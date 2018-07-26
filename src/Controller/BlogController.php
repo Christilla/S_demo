@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Entity\Article;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Repository\ArticleRepository;
 
 
@@ -61,6 +63,10 @@ class BlogController extends Controller
 
         $form = $this->createFormBuilder($article)
                      ->add('title')
+                     ->add('category', EntityType::class,[
+                        'class' => Category::class,
+                        'choice_label' => 'title'
+                    ])
                      ->add('content')
                      ->add('image')
 
